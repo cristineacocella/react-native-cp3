@@ -9,7 +9,7 @@ import acesa from "./assets/acesa.jpeg";
 import apagada from "./assets/apagada.jpeg";
 export default class App extends React.Component {
   state = {
-    valor: "3",
+    valor: 0,
     imagem: apagada,
   };
 
@@ -20,18 +20,16 @@ export default class App extends React.Component {
         <Contador valor={valor} />
         <View style={styles.buttonContainer}>
           <Botao
-            nome="Zerar"
-            onPress={(valor) => {
-              this.setState({ valor, imagem: apagada });
+            onPress={(valor, imagem) => {
+              this.setState({ valor, imagem });
+              if (imagem == "apagada") {
+                this.setState({ imagem: apagada });
+              } else if (valor % 3 == 0) {
+                this.setState({ imagem: acesa });
+              } else {
+                this.setState({ imagem: apagada });
+              }
             }}
-          />
-          <Botao
-            nome="Incrementar"
-            onPress={() => this.setState({ imagem: acesa })}
-          />
-          <Botao
-            nome="Decrementar"
-            onPress={() => this.setState({ imagem: apagada })}
           />
         </View>
         <Lampada imagem={imagem} />
