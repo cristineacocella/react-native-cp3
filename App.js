@@ -20,15 +20,24 @@ export default class App extends React.Component {
         <Contador valor={valor} />
         <View style={styles.buttonContainer}>
           <Botao
+            nome="Zerar"
+            value={valor}
             onPress={(valor, imagem) => {
               this.setState({ valor, imagem });
-              if (imagem == "apagada") {
-                this.setState({ imagem: apagada });
-              } else if (valor % 3 == 0) {
-                this.setState({ imagem: acesa });
-              } else {
-                this.setState({ imagem: apagada });
-              }
+            }}
+          />
+          <Botao
+            nome="Incrementar"
+            value={valor}
+            onPress={(valor, imagem) => {
+              this.setState({ valor, imagem });
+            }}
+          />
+          <Botao
+            nome="Decrementar"
+            value={valor}
+            onPress={(valor, imagem) => {
+              this.setState({ valor, imagem });
             }}
           />
         </View>

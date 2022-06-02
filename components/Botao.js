@@ -7,22 +7,30 @@ export default class Botao extends React.Component {
     imagem: "",
   };
 
-  handleZerar = (text1, text2) => {
-    const { onPress } = this.props;
-    console.log(text1);
-    console.log(text2);
-    const valor = 0;
-    const imagem = "apagada";
+  handleButton = () => {
+    const { onPress, nome, value } = this.props;
+    let valor = 0;
+    let imagem = 2;
+    if (nome == "Zerar") {
+      valor = 0;
+      imagem = 2;
+    } else if (nome == "Incrementar") {
+      valor = value + 1;
+    } else if (nome == "Decrementar") {
+      valor = value - 1;
+    }
+
+    if (valor % 3 == 0 && valor != 0) {
+      imagem = 1;
+    }
+    console.log(valor);
+    console.log(valor);
     this.setState({ valor, imagem });
     onPress(valor, imagem);
   };
 
   handleIncrement = () => {
     const { onPress } = this.props;
-    const { valor } = this.state;
-    const newValor = valor + 1;
-    this.setState({ valor: newValor });
-    onPress(newValor);
   };
 
   handleDecrement = () => {
@@ -36,14 +44,8 @@ export default class Botao extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.botao} onPress={this.handleZerar}>
-          <Text style={styles.txtBotao}>Zerar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.botao} onPress={this.handleIncrement}>
-          <Text style={styles.txtBotao}>Incrementar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.botao} onPress={this.handleDecrement}>
-          <Text style={styles.txtBotao}>Decrementar</Text>
+        <TouchableOpacity style={styles.botao} onPress={this.handleButton}>
+          <Text style={styles.txtBotao}>{this.props.nome}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -52,13 +54,12 @@ export default class Botao extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
+    marginLeft: 15,
   },
   botao: {
     backgroundColor: "steelblue",
     borderRadius: 5,
     padding: 7,
-    marginLeft: 15,
   },
   txtBotao: {
     color: "white",

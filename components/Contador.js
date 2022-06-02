@@ -9,12 +9,7 @@ export default class Contador extends React.Component {
     return (
       <View style={styles.rowContainer}>
         <Text style={styles.text}>Contador</Text>
-        <Text
-          style={styles.input}
-          // onChangeText={this.handleChangeText}
-        >
-          {valor}
-        </Text>
+        <Text style={styles.input}>{valor}</Text>
       </View>
     );
   }
